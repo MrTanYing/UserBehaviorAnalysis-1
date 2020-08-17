@@ -113,7 +113,7 @@ class FliterBlackListUserResult(maxCount: Long) extends KeyedProcessFunction[(Lo
   }
 
   override def onTimer(timestamp: Long, ctx: KeyedProcessFunction[(Long, Long), AdClickLog, AdClickLog]#OnTimerContext, out: Collector[AdClickLog]): Unit = {
-    if(timestamp == resetTimerTsState){
+    if(timestamp == resetTimerTsState.value()){
       isBlackState.clear()
       countState.clear()
     }
